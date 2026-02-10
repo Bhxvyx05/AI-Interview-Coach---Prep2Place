@@ -1,1 +1,1 @@
-# AI-Interview-Coach---Prep2Place
+# AI-Interview-Coach-Prep2Place
