@@ -20,8 +20,17 @@ uploaded_resume = st.file_uploader(
     type=["pdf"]
 )
 
+from utils import extract_text_from_pdf
+
 if uploaded_resume:
     st.success("✅ Resume uploaded successfully!")
+
+    if st.button("Extract Resume Text"):
+        resume_text = extract_text_from_pdf(uploaded_resume)
+
+        st.write("### Extracted Resume Text Preview:")
+        st.write(resume_text[:1000])  
+
 
 user_query = st.text_input("Ask your interview question")
 
