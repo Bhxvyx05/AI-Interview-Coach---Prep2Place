@@ -20,16 +20,17 @@ uploaded_resume = st.file_uploader(
     type=["pdf"]
 )
 
-from utils import extract_text_from_pdf
+from utils import extract_text_from_pdf, chunk_text
 
 if uploaded_resume:
-    st.success("✅ Resume uploaded successfully!")
+    st.success("Resume uploaded successfully!")
 
-    if st.button("Extract Resume Text"):
+    if st.button("Process Resume"):
         resume_text = extract_text_from_pdf(uploaded_resume)
+        chunks = chunk_text(resume_text)
 
-        st.write("### Extracted Resume Text Preview:")
-        st.write(resume_text[:1000])  
+        st.write("Preview of Resume Chunks:")
+        st.write(chunks[:3])
 
 
 user_query = st.text_input("Ask your interview question")
