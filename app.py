@@ -1,4 +1,5 @@
 import streamlit as st
+from langchain_community.vectorstores import FAISS
 
 st.set_page_config(page_title="CodeGuru", layout="wide")
 
@@ -46,3 +47,9 @@ def load_embeddings():
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
+
+@st.cache_data(show_spinner=False)
+def process_resume(resume_text):
+    chunks = chunk_text(resume_text)
+    embeddings = load_embeddings()
+    return FAISS.from_texts(chunks, embedding=embeddings)
