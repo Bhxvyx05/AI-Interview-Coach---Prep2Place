@@ -37,3 +37,12 @@ user_query = st.text_input("Ask your interview question")
 
 if st.button("Submit"):
     st.info("AI response will be implemented in the next version.")
+
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
+@st.cache_resource
+def load_embeddings():
+    return HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2"
+    )
+
