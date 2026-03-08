@@ -36,7 +36,8 @@ if uploaded_resume:
         st.write(chunks[:3])
 
 
-user_query = st.text_input("Ask your interview question")
+if "vector_db" in st.session_state:
+    user_query = st.text_input("Ask your interview question")
 
 if st.button("Submit"):
     st.info("AI response will be implemented in the next version.")
