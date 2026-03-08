@@ -28,8 +28,10 @@ if uploaded_resume:
 
     if st.button("Process Resume"):
         resume_text = extract_text_from_pdf(uploaded_resume)
-        chunks = chunk_text(resume_text)
-
+        vector_db = process_resume(resume_text)
+        st.session_state["vector_db"] = vector_db
+        st.success("Resume analyzed successfully!")
+     
         st.write("Preview of Resume Chunks:")
         st.write(chunks[:3])
 
